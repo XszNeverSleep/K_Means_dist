@@ -1,0 +1,65 @@
+# K-means clustering configuration
+data:
+  # Data generation parameters
+  n_samples: 10000
+  n_features: 100
+  n_clusters: 10
+  random_state: 42
+  noise: 0.1
+  
+  # Data loading parameters
+  data_path: null  # Set to path if loading from file
+  save_data: false
+  data_file: "data/synthetic_data.pt"
+
+model:
+  # K-means parameters
+  n_clusters: 10
+  distance: "euclidean"  # Options: "euclidean", "cosine"
+  balanced: false  # Enable balanced clustering
+  iter_limit: 100
+  tolerance: 1e-4
+  
+  # Initialization
+  init_method: "random"  # Options: "random", "kmeans++"
+  random_state: 42
+
+training:
+  # Device configuration
+  device: "auto"  # Options: "cpu", "cuda", "auto"
+  
+  # Batch processing
+  batch_size: 10240
+  
+  # Distributed training
+  distributed: false
+  world_size: 1
+  rank: 0
+  
+  # Progress tracking
+  verbose: true
+  save_progress: false
+  
+  # Online learning (for incremental clustering)
+  online: false
+  online_iterations: 5
+
+output:
+  # Results saving
+  save_model: true
+  model_path: "outputs/kmeans_model.pkl"
+  
+  # Visualization
+  plot_results: true
+  save_plots: true
+  plot_path: "outputs/plots/"
+  
+  # Metrics
+  compute_metrics: true
+  metrics_path: "outputs/metrics.json"
+
+logging:
+  # Logging configuration
+  log_level: "INFO"
+  log_file: "outputs/kmeans.log"
+  save_logs: true 
